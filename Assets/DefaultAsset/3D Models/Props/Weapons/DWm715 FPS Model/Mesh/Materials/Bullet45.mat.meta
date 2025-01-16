@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d1803f93dfc23ed45b46ee2c87927ffb
+timeCreated: 1485716235
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 72033
+  packageName: Dan Wesson Model 715
+  packageVersion: 2.0
+  assetPath: Assets/3D Models/Props/Weapons/DWm715 FPS Model/Mesh/Materials/Bullet45.mat
+  uploadId: 375236

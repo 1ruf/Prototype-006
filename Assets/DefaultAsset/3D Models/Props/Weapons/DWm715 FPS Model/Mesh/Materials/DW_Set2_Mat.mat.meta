@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e8ec2500e271ca642a606f1d900ae9ec
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 72033
+  packageName: Dan Wesson Model 715
+  packageVersion: 2.0
+  assetPath: Assets/3D Models/Props/Weapons/DWm715 FPS Model/Mesh/Materials/DW_Set2_Mat.mat
+  uploadId: 375236
