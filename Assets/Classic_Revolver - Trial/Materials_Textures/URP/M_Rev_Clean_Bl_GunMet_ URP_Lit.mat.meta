@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: be45650f9682c7e4fb1598cef243cfe2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 288921
+  packageName: ASGS Classic Revolver - Trial
+  packageVersion: 1.0
+  assetPath: Assets/Classic_Revolver - Trial/Materials_Textures/URP/M_Rev_Clean_Bl_GunMet_
+    URP_Lit.mat
+  uploadId: 713843

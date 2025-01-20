@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ef83eca98a11f624497bf8ef6aebbc79
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 288921
+  packageName: ASGS Classic Revolver - Trial
+  packageVersion: 1.0
+  assetPath: Assets/Classic_Revolver - Trial/Materials_Textures/HDRP/M_Rev_Clean_Bl_Gunmetal_HDRP_Lit.mat
+  uploadId: 713843
