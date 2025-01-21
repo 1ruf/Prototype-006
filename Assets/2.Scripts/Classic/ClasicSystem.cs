@@ -23,10 +23,12 @@ public class ClasicSystem : MonoBehaviour
         yield return new WaitForSeconds(time);
         _blocker.GetComponent<Image>().DOFade(0f, _introFadeTime).OnComplete(() => _blocker.SetActive(false));
         yield return new WaitForSeconds(5.5f);
-        ChooseTure();
+
+        ButtonManager_Cla.Instance.CurrentA = ButtonMode_A.ChooseTurn;
+        ButtonManager_Cla.Instance.SetBtn_A(true);
     }
 
-    private void ChooseTure()
+    public void ChooseTure()
     {
         int starter = Random.Range(0, 2);
         _currentTurn = starter;
@@ -47,3 +49,4 @@ public class ClasicSystem : MonoBehaviour
         animator.enabled = value;
     }
 }
+
