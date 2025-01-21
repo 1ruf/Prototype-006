@@ -7,9 +7,12 @@ public class FirstLoad : MonoBehaviour
 
     private AudioSource _audio;
 
-    [Header("Resources")]
+    [Header("--Resources--")]
     [SerializeField] private AudioResource _spin;
     [SerializeField] private AudioResource _close;
+    [Header("Bullet")]
+    [SerializeField] private AudioResource _bulletBounce;
+    [SerializeField] private AudioResource _bulletLay;
     private void Awake()
     {
         _audio = GetComponent<AudioSource>();
@@ -17,13 +20,27 @@ public class FirstLoad : MonoBehaviour
     }
     public void PlaySpinSFX()
     {
-        _audio.resource = _spin;
-        _audio.Play();
+        PlayAudio(_spin);
     }
 
     public void PlayCloseSFX()
     {
-        _audio.resource = _close;
+        PlayAudio(_close);
+    }
+
+    public void PlayBulletBounce()
+    {
+        PlayAudio(_bulletBounce);
+    }
+
+    public void PlayBulletLay()
+    {
+        PlayAudio(_bulletLay);
+    }
+
+    private void PlayAudio(AudioResource audio) 
+    {
+        _audio.resource = audio;
         _audio.Play();
     }
 }
