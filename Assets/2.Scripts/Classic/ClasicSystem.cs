@@ -97,7 +97,7 @@ public class ClasicSystem : MonoBehaviour
     private IEnumerator SetGunClick(bool value, float time = 0)
     {
         yield return new WaitForSeconds(time);
-        _revolver.GetComponent<Gun>().SetGunClick(value);
+        _revolver.GetComponentInChildren<Gun>().SetGunClick(value);
     }
 }
 
