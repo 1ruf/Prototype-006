@@ -4499,7 +4499,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1175675940}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1399833446}
+        m_TargetAssemblyTypeName: ClasicSystem, Assembly-CSharp
+        m_MethodName: AimmingBtnClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1175675940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5472,6 +5484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d599c3a1fd64094592e04ff95bf095d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChooseUI: {fileID: 2072005661}
   _blocker: {fileID: 31142086}
   _cutsceneAnimator: {fileID: 2010907538}
   _revolver: {fileID: 1665247218}
@@ -9698,7 +9711,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1399833446}
         m_TargetAssemblyTypeName: ClasicSystem, Assembly-CSharp
-        m_MethodName: PlayerReady
+        m_MethodName: PlayerChoose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

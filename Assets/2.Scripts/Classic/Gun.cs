@@ -28,6 +28,7 @@ public class Gun : MonoBehaviour
     {
         if (_canClick == false) return;
         SetLayer(gameObject, LayerMask.NameToLayer(_gunLayerName));
+        _canClick = false;
         GunClicked?.Invoke();
     }
 

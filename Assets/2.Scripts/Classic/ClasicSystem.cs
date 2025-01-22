@@ -8,6 +8,7 @@ using UnityEngine.UIElements.Experimental;
 
 public class ClasicSystem : MonoBehaviour
 {
+    [SerializeField] private GameObject ChooseUI;
     [SerializeField] private GameObject _blocker;
     [SerializeField] private Animator _cutsceneAnimator;
     [SerializeField] private GameObject _revolver;
@@ -71,11 +72,24 @@ public class ClasicSystem : MonoBehaviour
         _orderTMP.text = "Grab the gun";
         StartCoroutine(SetGunClick(true));
     }
-    public void PlayerReady()
+    public void PlayerChoose()
     {
+        _orderTMP.text = "";
+        StartCoroutine(SetAnimator(_cutsceneAnimator, true));
+        _cutsceneAnimator.Play("ChooseWay");
+        StartCoroutine(SetEnableDelay(ChooseUI, true, 2f));
+
+        //돌릴지 쏠지 결정하는 ui 띄우기
+
         //자신을 조준하는 애니메이션 실행. 심장소리,호흡소리 추가
         _currentTurn = 1;//1 == enemy
     }
+    public void AimmingBtnClicked()
+    {
+        ChooseUI.SetActive(false);
+        _cutsceneAnimator.Play("AimmingSelf");
+    }
+
 
     public void EnemyTurn()
     {
@@ -84,6 +98,9 @@ public class ClasicSystem : MonoBehaviour
 
 
         _currentTurn = 0;//0 == player
+
+        //디버깅용vvv
+        CheckTurn();
     }
 
 
@@ -99,6 +116,12 @@ public class ClasicSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         _revolver.GetComponentInChildren<Gun>().SetGunClick(value);
+    }
+
+    private IEnumerator SetEnableDelay(GameObject gameObject, bool value, float time)
+    {
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(value);
     }
 }
 

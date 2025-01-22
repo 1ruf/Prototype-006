@@ -6456,7 +6456,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.5833334
+  - time: 1.2666667
     functionName: PlayBulletInsert
     data: 
     objectReferenceParameter: {fileID: 0}
