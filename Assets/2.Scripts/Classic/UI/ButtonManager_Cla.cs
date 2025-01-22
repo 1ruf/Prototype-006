@@ -7,9 +7,9 @@ public class ButtonManager_Cla : MonoBehaviour
     public static ButtonManager_Cla Instance;
 
     [SerializeField] private ClasicSystem _system;
-    [SerializeField] private GameObject _btnA;
-    [SerializeField] private GameObject _btnB;
-    [SerializeField] private GameObject _btnC;
+    public GameObject _btnA;
+    public GameObject _btnB;
+    public GameObject _btnC;
 
     [SerializeField] private TextMeshProUGUI _btnTxt_A_1;
 
@@ -34,14 +34,15 @@ public class ButtonManager_Cla : MonoBehaviour
         {
             case ButtonMode_A.ChooseTurn:
                 SetBtn_A(false);
-                _system.ChooseTure();
+                _system.ChooseTurn();
                 //_btnTxt_A_1.text = "choose turn";
                 break;
         }
     }
     public void B_ButtonsClicked()
     {
-
+        _btnB.SetActive(false);
+        _system.PlayerTriggerPulled();
     }
     public void C_ButtonClicked()
     {

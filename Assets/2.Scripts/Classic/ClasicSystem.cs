@@ -18,10 +18,14 @@ public class ClasicSystem : MonoBehaviour
     [SerializeField] private float _introFadeTime;
 
     private int _currentTurn; //0 = plr, 1 = bot
+
+    private int _bulletPosition; // 1 ~ 6
+    private int _currentCylinder;
     private void OnEnable()
     {
         _orderTMP.text = "";
         StartCoroutine(Fadeout(1f));
+        RandomSetBullet();
     }
 
     private IEnumerator Fadeout(float time)
@@ -34,7 +38,20 @@ public class ClasicSystem : MonoBehaviour
         ButtonManager_Cla.Instance.SetBtn_A(true);
     }
 
-    public void ChooseTure()
+    private void SetBullet(int num)
+    {
+        _currentCylinder = num;
+        if (_currentCylinder > 6) _currentCylinder = 1;
+        print("next current position:" + _currentCylinder + ",bullet position:" + _bulletPosition);
+    }
+
+    private void RandomSetBullet()
+    {
+        _bulletPosition = Random.Range(1, 7);
+        _currentCylinder = Random.Range(1, 7);
+    }
+
+    public void ChooseTurn()
     {
         int starter = Random.Range(0, 2);
         _currentTurn = starter;
@@ -82,12 +99,27 @@ public class ClasicSystem : MonoBehaviour
         //돌릴지 쏠지 결정하는 ui 띄우기
 
         //자신을 조준하는 애니메이션 실행. 심장소리,호흡소리 추가
+    }
+    public void PlayerTriggerPulled()
+    {
+        if (_currentCylinder == _bulletPosition) //탄이 있으면?
+        {
+            print("사망!");
+            _cutsceneAnimator.Play("PlayerDie");
+        }
+        else
+        {
+            _cutsceneAnimator.Play("PullTrigger");
+            SetBullet(_currentCylinder + 1);
+            StartCoroutine(CheckTurnDelay(3.6f));
+        }
         _currentTurn = 1;//1 == enemy
     }
     public void AimmingBtnClicked()
     {
         ChooseUI.SetActive(false);
         _cutsceneAnimator.Play("AimmingSelf");
+        StartCoroutine(SetEnableDelay(ButtonManager_Cla.Instance._btnB, true, 2f));
     }
 
 
@@ -105,6 +137,11 @@ public class ClasicSystem : MonoBehaviour
 
 
 
+    private IEnumerator CheckTurnDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        CheckTurn();
+    }
 
     private IEnumerator SetAnimator(Animator animator,bool value, float time = 0)
     {
