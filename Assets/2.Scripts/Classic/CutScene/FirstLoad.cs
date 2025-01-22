@@ -10,6 +10,9 @@ public class FirstLoad : MonoBehaviour
     [Header("--Resources--")]
     [SerializeField] private AudioResource _spin;
     [SerializeField] private AudioResource _close;
+    [SerializeField] private AudioResource _bulletInsert;
+    [SerializeField] private AudioResource _hammerTic;
+    [SerializeField] private AudioResource _hammerCock;
     [Header("Bullet")]
     [SerializeField] private AudioResource _bulletBounce;
     [SerializeField] private AudioResource _bulletLay;
@@ -17,6 +20,10 @@ public class FirstLoad : MonoBehaviour
     {
         _audio = GetComponent<AudioSource>();
         _audio.outputAudioMixerGroup = _output;
+    }
+    public void PlayBulletInsert()
+    {
+        PlayAudio(_bulletInsert);
     }
     public void PlaySpinSFX()
     {
@@ -38,6 +45,15 @@ public class FirstLoad : MonoBehaviour
         PlayAudio(_bulletLay);
     }
 
+    public void PlayHammerTic()
+    {
+        PlayAudio(_hammerTic);
+    }
+
+    public void PlayHammerCocked()
+    {
+        PlayAudio(_hammerCock);
+    }
     private void PlayAudio(AudioResource audio) 
     {
         _audio.resource = audio;

@@ -70,9 +70,10 @@ public class ClasicSystem : MonoBehaviour
     {
         _orderTMP.text = "Grab the gun";
         StartCoroutine(SetGunClick(true));
-
-
-
+    }
+    public void PlayerReady()
+    {
+        //자신을 조준하는 애니메이션 실행. 심장소리,호흡소리 추가
         _currentTurn = 1;//1 == enemy
     }
 

@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &31142087
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4221,7 +4221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Version: 3
-  m_UsePipelineSettings: 1
+  m_UsePipelineSettings: 0
   m_AdditionalLightsShadowResolutionTier: 2
   m_LightLayerMask: 1
   m_RenderingLayers: 1
@@ -4252,9 +4252,9 @@ Light:
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_Bias: 10
+    m_NormalBias: 0
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -4304,13 +4304,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036691196}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.3128083, y: 0.04523367, z: -0.014915822, w: 0.94862133}
+  m_LocalPosition: {x: 384.5, y: 15.33, z: 436.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 36.5, y: 5.46, z: 0}
 --- !u!1 &1088369272
 GameObject:
   m_ObjectHideFlags: 0
@@ -6663,7 +6663,7 @@ Transform:
   m_GameObject: {fileID: 1665247218}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0.7071068, z: -0, w: 0}
-  m_LocalPosition: {x: 0.6665344, y: 0.47999954, z: 0.24081421}
+  m_LocalPosition: {x: 0.6665344, y: 0.47999954, z: 0.2408142}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8262,6 +8262,9 @@ MonoBehaviour:
   _output: {fileID: -703896402490254219, guid: b98790a022fc9ed40afd387cd154d511, type: 2}
   _spin: {fileID: 8300000, guid: 55dbf89557f4aa14ea2e2b5ae154bc07, type: 3}
   _close: {fileID: 8300000, guid: 315ac2db412286f468f7f72efe5c493c, type: 3}
+  _bulletInsert: {fileID: 8300000, guid: ab8eac80d4ff9fe439e809307bb2f301, type: 3}
+  _hammerTic: {fileID: 8300000, guid: 87206086b14222e47bb468bf2bac0953, type: 3}
+  _hammerCock: {fileID: 8300000, guid: c5285032b9b00824297d8c703d5dbfea, type: 3}
   _bulletBounce: {fileID: 8300000, guid: ce3c0484d5c7ad94fbc3cf710897db82, type: 3}
   _bulletLay: {fileID: 8300000, guid: e0ccb9202aa0b6544a77a200edd51ffe, type: 3}
 --- !u!82 &2010907541
@@ -9690,6 +9693,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _outlineLayerName: Outline
   _gunLayerName: Gun
+  GunClicked:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1399833446}
+        m_TargetAssemblyTypeName: ClasicSystem, Assembly-CSharp
+        m_MethodName: PlayerReady
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4944651121036062600
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.VirtualTexturing;
 
 public class Gun : MonoBehaviour
 {
     [SerializeField] private string _outlineLayerName = "Outline";
     [SerializeField] private string _gunLayerName = "Gun";
+
+    public UnityEvent GunClicked;
 
     private bool _canClick;
 
@@ -20,6 +23,12 @@ public class Gun : MonoBehaviour
     private void OnMouseExit()
     {
         SetLayer(gameObject, LayerMask.NameToLayer(_gunLayerName));
+    }
+    private void OnMouseDown()
+    {
+        if (_canClick == false) return;
+        SetLayer(gameObject, LayerMask.NameToLayer(_gunLayerName));
+        GunClicked?.Invoke();
     }
 
     private void SetLayer(GameObject target,int targetLayer)
