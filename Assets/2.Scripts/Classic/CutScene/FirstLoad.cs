@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -13,7 +14,7 @@ public class FirstLoad : MonoBehaviour
     [SerializeField] private AudioResource _bulletInsert;
     [SerializeField] private AudioResource _hammerTic;
     [SerializeField] private AudioResource _hammerCock;
-    [SerializeField] private AudioResource _gunShoot;
+    [SerializeField] private AudioResource _gunFireSound;
     [Header("Bullet")]
     [SerializeField] private AudioResource _bulletBounce;
     [SerializeField] private AudioResource _bulletLay;
@@ -53,7 +54,7 @@ public class FirstLoad : MonoBehaviour
 
     public void PlayGunShot()
     {
-        PlayAudio(_gunShoot);
+        PlayAudio(_gunFireSound);
     }
 
     public void PlayHammerCocked()
