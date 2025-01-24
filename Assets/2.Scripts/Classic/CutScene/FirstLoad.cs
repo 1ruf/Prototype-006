@@ -15,6 +15,7 @@ public class FirstLoad : MonoBehaviour
     [SerializeField] private AudioResource _hammerTic;
     [SerializeField] private AudioResource _hammerCock;
     [SerializeField] private AudioResource _gunFireSound;
+    [SerializeField] private AudioResource _spinAndClose;
     [Header("Bullet")]
     [SerializeField] private AudioResource _bulletBounce;
     [SerializeField] private AudioResource _bulletLay;
@@ -55,6 +56,11 @@ public class FirstLoad : MonoBehaviour
     public void PlayGunShot()
     {
         PlayAudio(_gunFireSound);
+    }
+
+    public void PlaySpinAndClose()
+    {
+        PlayAudio(_spinAndClose);
     }
 
     public void PlayHammerCocked()

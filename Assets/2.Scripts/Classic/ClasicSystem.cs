@@ -122,6 +122,14 @@ public class ClasicSystem : MonoBehaviour
         StartCoroutine(SetEnableDelay(ButtonManager_Cla.Instance._btnB, true, 2f));
     }
 
+    public void SpinBtnClicked()
+    {
+        ChooseUI.SetActive(false);
+        _cutsceneAnimator.Play("PlayerSpin");
+        //Ω∫«… »Ωºˆ ¡Ÿ¿Ã±‚
+        RandomSetBullet();
+        StartCoroutine(SetEnableDelay(ChooseUI, true, 3.2f));
+    }
 
     public void EnemyTurn()
     {
