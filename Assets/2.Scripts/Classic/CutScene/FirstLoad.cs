@@ -67,9 +67,12 @@ public class FirstLoad : MonoBehaviour
     {
         PlayAudio(_hammerCock);
     }
+
     private void PlayAudio(AudioResource audio) 
     {
         _audio.resource = audio;
         _audio.Play();
     }
+
+//깃허브 모바일로 편집됨. 2025-1-26-02:03
 }
