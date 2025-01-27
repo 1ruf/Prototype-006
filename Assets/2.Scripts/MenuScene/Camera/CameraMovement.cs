@@ -6,6 +6,4 @@ using UnityEngine.UI;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private Transform _camLooker;
-
-
 }
