@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        print("마우스가 올라감");
+        print("마우스가 올라감" + _canClick);
         SetLayer(gameObject, LayerMask.NameToLayer(_outlineLayerName));
     }
     private void OnMouseExit()
