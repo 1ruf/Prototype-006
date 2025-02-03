@@ -8,6 +8,7 @@ using UnityEngine.UIElements.Experimental;
 
 public class ClasicSystem : MonoBehaviour
 {
+    [SerializeField] private ClassicEnemy _enemy;
     [SerializeField] private GameObject ChooseUI;
     [SerializeField] private GameObject _blocker;
     [SerializeField] private Animator _cutsceneAnimator;
@@ -16,6 +17,8 @@ public class ClasicSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _orderTMP;
     [Header("Setting")]
     [SerializeField] private float _introFadeTime;
+
+    private int _spinCnt; //랜덤 설정 이후 돌린 횟수
 
     private int _currentTurn; //0 = plr, 1 = bot
 
@@ -42,13 +45,15 @@ public class ClasicSystem : MonoBehaviour
     {
         _currentCylinder = num;
         if (_currentCylinder > 6) _currentCylinder = 1;
-        print("next current position:" + _currentCylinder + ",bullet position:" + _bulletPosition);
+        _spinCnt++;
+        print(_spinCnt);
     }
 
     private void RandomSetBullet()
     {
         _bulletPosition = Random.Range(1, 7);
         _currentCylinder = Random.Range(1, 7);
+        _spinCnt = 0;
     }
 
     public void ChooseTurn()
@@ -57,11 +62,11 @@ public class ClasicSystem : MonoBehaviour
         _currentTurn = starter;
         if (starter == 0)
         {
-            _cutsceneAnimator.Play("Starter_PLAYER");
+            PlayAnimation("Starter_PLAYER");
         }
         else
         {
-            _cutsceneAnimator.Play("Starter_BOT");
+            PlayAnimation("Starter_BOT");
         }
         StartCoroutine(SetAnimator(_cutsceneAnimator, false, 4.5f));
         CheckTurn(4.5f);
@@ -93,7 +98,7 @@ public class ClasicSystem : MonoBehaviour
     {
         _orderTMP.text = "";
         StartCoroutine(SetAnimator(_cutsceneAnimator, true));
-        _cutsceneAnimator.Play("ChooseWay");
+        PlayAnimation("ChooseWay");
         StartCoroutine(SetEnableDelay(ChooseUI, true, 2f));
 
         //돌릴지 쏠지 결정하는 ui 띄우기
@@ -105,11 +110,11 @@ public class ClasicSystem : MonoBehaviour
         if (_currentCylinder == _bulletPosition) //탄이 있으면?
         {
             print("사망!");
-            _cutsceneAnimator.Play("PlayerDie");
+            PlayAnimation("PlayerDie");
         }
         else
         {
-            _cutsceneAnimator.Play("PullTrigger");
+            PlayAnimation("PullTrigger");
             SetBullet(_currentCylinder + 1);
             StartCoroutine(CheckTurnDelay(3.6f));
         }
@@ -118,14 +123,14 @@ public class ClasicSystem : MonoBehaviour
     public void AimmingBtnClicked()
     {
         ChooseUI.SetActive(false);
-        _cutsceneAnimator.Play("AimmingSelf");
+        PlayAnimation("AimmingSelf");
         StartCoroutine(SetEnableDelay(ButtonManager_Cla.Instance._btnB, true, 2f));
     }
 
     public void SpinBtnClicked()
     {
         ChooseUI.SetActive(false);
-        _cutsceneAnimator.Play("PlayerSpin");
+        PlayAnimation("PlayerSpin");
         //스핀 횟수 줄이기
         RandomSetBullet();
         StartCoroutine(SetEnableDelay(ChooseUI, true, 3.2f));
@@ -134,7 +139,7 @@ public class ClasicSystem : MonoBehaviour
     public void EnemyTurn()
     {
         print("상대 턴 입니다.");
-
+        _enemy.EnemyThink(_spinCnt);
 
 
         _currentTurn = 0;//0 == player
@@ -143,7 +148,10 @@ public class ClasicSystem : MonoBehaviour
         CheckTurn();
     }
 
-
+    public void PlayAnimation(string name)
+    {
+        _cutsceneAnimator.Play(name);
+    }
 
     private IEnumerator CheckTurnDelay(float time)
     {
