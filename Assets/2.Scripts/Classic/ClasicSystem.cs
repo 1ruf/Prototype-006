@@ -18,7 +18,7 @@ public class ClasicSystem : MonoBehaviour
     [Header("Setting")]
     [SerializeField] private float _introFadeTime;
 
-    private int _spinCnt; //랜덤 설정 이후 돌린 횟수
+    public int SpinCnt; //랜덤 설정 이후 돌린 횟수
 
     private int _currentTurn; //0 = plr, 1 = bot
 
@@ -45,15 +45,15 @@ public class ClasicSystem : MonoBehaviour
     {
         _currentCylinder = num;
         if (_currentCylinder > 6) _currentCylinder = 1;
-        _spinCnt++;
-        print(_spinCnt);
+        SpinCnt++;
+        print(SpinCnt);
     }
 
     private void RandomSetBullet()
     {
         _bulletPosition = Random.Range(1, 7);
         _currentCylinder = Random.Range(1, 7);
-        _spinCnt = 0;
+        SpinCnt = 0;
     }
 
     public void ChooseTurn()
@@ -139,11 +139,10 @@ public class ClasicSystem : MonoBehaviour
     public void EnemyTurn()
     {
         print("상대 턴 입니다.");
-        _enemy.EnemyThink(_spinCnt);
+        _enemy.EnemyThink(SpinCnt);
 
 
         _currentTurn = 0;//0 == player
-
         //디버깅용vvv
         CheckTurn();
     }
