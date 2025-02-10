@@ -7023,6 +7023,7 @@ MonoBehaviour:
   _orderTMP: {fileID: 1258968424}
   _introFadeTime: 5
   SpinCnt: 0
+  CurrentTurn: 0
 --- !u!1 &1418848607
 GameObject:
   m_ObjectHideFlags: 0
@@ -10325,6 +10326,7 @@ GameObject:
   - component: {fileID: 2010907538}
   - component: {fileID: 2010907541}
   - component: {fileID: 2010907540}
+  - component: {fileID: 2010907542}
   m_Layer: 0
   m_Name: Animated
   m_TagString: Untagged
@@ -10495,6 +10497,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2010907542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010907537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32e920a85ff97a44f88a75bcb9b9d2ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyScript: {fileID: 0}
 --- !u!1 &2022846808
 GameObject:
   m_ObjectHideFlags: 0

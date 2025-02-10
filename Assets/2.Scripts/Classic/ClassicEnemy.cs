@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ClassicEnemy : MonoBehaviour
@@ -9,16 +11,43 @@ public class ClassicEnemy : MonoBehaviour
 
     public void EnemyThink(int spinCnt)
     {
+        StartCoroutine(EnemyThinkCo(spinCnt));
+        
+    }
+
+    private IEnumerator EnemyThinkCo(int spinCnt)
+    {
+        print("Enemy가 생각하는SpinCnt:" + spinCnt);
         _spined = spinCnt;
         _system.PlayAnimation("EnemyGrabGun");
+        yield return new WaitForSeconds(Random.Range(3.5f, 5f));
         if (ThinkSpin(spinCnt))
         {
             _system.SpinCnt = 0;
             _spined = 0;
-            print("cylinder Spined.");
         }
-        //조준사격
+        yield return new WaitForSeconds(Random.Range(5f, 7f));
+        _system.PlayAnimation("EnemyAimmingSelf");
+        yield return new WaitForSeconds(Random.Range(2f, 5f));
+        StartCoroutine(PullTrigger());
+    }
+
+    public IEnumerator PullTrigger()
+    {
         _system.SpinCnt++;
+        if (_system.CheckBullet())
+        {
+            _system.PlayAnimation("EnemyDie");
+        }
+        else
+        {
+            _system.PlayAnimation("EnemyPullTrigger");
+            yield return new WaitForSeconds(0.7f);
+            _system.PlayAnimation("EnemyGetDownGun");
+            yield return new WaitForSeconds(2.5f);
+            _system.CurrentTurn = 0;
+            _system.CheckTurn();
+        }   
     }
 
     private bool ThinkSpin(int spinCnt)
@@ -29,13 +58,12 @@ public class ClassicEnemy : MonoBehaviour
         int percentMultiply = 1;
         spinPercent = Random.Range(spinCnt, 7);
 
-        if (spinPercent == 6)
+        print("spinPercent:" + spinPercent);
+
+        if (spinPercent >= 6)
         {
+            _system.PlayAnimation("EnemyGunSpin");
             return true;
-        }
-        if (Random.Range(0, 2) == 1)
-        {
-            ThinkSpin(spinCnt);
         }
         return false;
     }

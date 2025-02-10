@@ -33,6 +33,7 @@ public class ButtonManager_Cla : MonoBehaviour
         switch (CurrentA)
         {
             case ButtonMode_A.ChooseTurn:
+                print("버튼이ㅣ 눌림:{A_1}");
                 SetBtn_A(false);
                 _system.ChooseTurn();
                 //_btnTxt_A_1.text = "choose turn";

@@ -20,7 +20,7 @@ public class ClasicSystem : MonoBehaviour
 
     public int SpinCnt; //랜덤 설정 이후 돌린 횟수
 
-    private int _currentTurn; //0 = plr, 1 = bot
+    public int CurrentTurn; //0 = plr, 1 = bot
 
     private int _bulletPosition; // 1 ~ 6
     private int _currentCylinder;
@@ -29,6 +29,8 @@ public class ClasicSystem : MonoBehaviour
         _orderTMP.text = "";
         StartCoroutine(Fadeout(1f));
         RandomSetBullet();
+        _orderTMP.text = "";
+        StartCoroutine(SetGunClick(false));
     }
 
     private IEnumerator Fadeout(float time)
@@ -53,13 +55,14 @@ public class ClasicSystem : MonoBehaviour
     {
         _bulletPosition = Random.Range(1, 7);
         _currentCylinder = Random.Range(1, 7);
+        print($"현재 실린더:{_currentCylinder},총알 위치:{_bulletPosition}");
         SpinCnt = 0;
     }
 
     public void ChooseTurn()
     {
         int starter = Random.Range(0, 2);
-        _currentTurn = starter;
+        CurrentTurn = starter;
         if (starter == 0)
         {
             PlayAnimation("Starter_PLAYER");
@@ -68,36 +71,44 @@ public class ClasicSystem : MonoBehaviour
         {
             PlayAnimation("Starter_BOT");
         }
-        StartCoroutine(SetAnimator(_cutsceneAnimator, false, 4.5f));
         CheckTurn(4.5f);
     }
 
-    private void CheckTurn(float time = 0)
-    {
-        StartCoroutine(CheckTurnCoroutine(time));
-    }
     private IEnumerator CheckTurnCoroutine(float time)
     {
+        print("턴 체크 코루틴");
         yield return new WaitForSeconds(time);
-        if (_currentTurn == 0)
+        if (CurrentTurn == 0)
         {
             PlayerTurn();
         }
         else
         {
+            _orderTMP.text = "";
+            StartCoroutine(SetGunClick(false));
             EnemyTurn();
         }
     }
 
+    public void CheckTurn(float time = 0)
+    {
+        StartCoroutine(CheckTurnCoroutine(time));
+    }
+    public bool CheckBullet()
+    {
+        if (_bulletPosition == _currentCylinder) return true;
+        return false;
+    }
+
     public void PlayerTurn()
     {
+        print("플레이어턴");
         _orderTMP.text = "Grab the gun";
         StartCoroutine(SetGunClick(true));
     }
     public void PlayerChoose()
     {
         _orderTMP.text = "";
-        StartCoroutine(SetAnimator(_cutsceneAnimator, true));
         PlayAnimation("ChooseWay");
         StartCoroutine(SetEnableDelay(ChooseUI, true, 2f));
 
@@ -107,7 +118,7 @@ public class ClasicSystem : MonoBehaviour
     }
     public void PlayerTriggerPulled()
     {
-        if (_currentCylinder == _bulletPosition) //탄이 있으면?
+        if (CheckBullet()) //탄이 있으면?
         {
             print("사망!");
             PlayAnimation("PlayerDie");
@@ -118,7 +129,7 @@ public class ClasicSystem : MonoBehaviour
             SetBullet(_currentCylinder + 1);
             StartCoroutine(CheckTurnDelay(3.6f));
         }
-        _currentTurn = 1;//1 == enemy
+        CurrentTurn = 1;//1 == enemy
     }
     public void AimmingBtnClicked()
     {
@@ -138,13 +149,9 @@ public class ClasicSystem : MonoBehaviour
 
     public void EnemyTurn()
     {
-        print("상대 턴 입니다.");
+        _orderTMP.text = "";
+        StartCoroutine(SetGunClick(false));
         _enemy.EnemyThink(SpinCnt);
-
-
-        _currentTurn = 0;//0 == player
-        //디버깅용vvv
-        CheckTurn();
     }
 
     public void PlayAnimation(string name)
@@ -156,12 +163,6 @@ public class ClasicSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         CheckTurn();
-    }
-
-    private IEnumerator SetAnimator(Animator animator,bool value, float time = 0)
-    {
-        yield return new WaitForSeconds(time);
-        animator.enabled = value;
     }
 
     private IEnumerator SetGunClick(bool value, float time = 0)
