@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &31142087
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7020,6 +7020,8 @@ MonoBehaviour:
   _blocker: {fileID: 31142086}
   _cutsceneAnimator: {fileID: 2010907538}
   _revolver: {fileID: 1665247218}
+  _spinCounter: {fileID: 294450014}
+  _spinBtn: {fileID: 725088800}
   _orderTMP: {fileID: 1258968424}
   _introFadeTime: 5
   SpinCnt: 0

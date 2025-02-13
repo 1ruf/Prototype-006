@@ -14,6 +14,8 @@ public class ClasicSystem : MonoBehaviour
     [SerializeField] private Animator _cutsceneAnimator;
     [SerializeField] private GameObject _revolver;
     [Header("UI")]
+    [SerializeField] private TextMeshProUGUI _spinCounter;
+    [SerializeField] private Button _spinBtn;
     [SerializeField] private TextMeshProUGUI _orderTMP;
     [Header("Setting")]
     [SerializeField] private float _introFadeTime;
@@ -24,6 +26,8 @@ public class ClasicSystem : MonoBehaviour
 
     private int _bulletPosition; // 1 ~ 6
     private int _currentCylinder;
+
+    private int _resetCount = 3;
     private void OnEnable()
     {
         _orderTMP.text = "";
@@ -104,6 +108,7 @@ public class ClasicSystem : MonoBehaviour
     {
         print("플레이어턴");
         _orderTMP.text = "Grab the gun";
+        _spinCounter.text = $"x{_resetCount}";
         StartCoroutine(SetGunClick(true));
     }
     public void PlayerChoose()
@@ -140,11 +145,14 @@ public class ClasicSystem : MonoBehaviour
 
     public void SpinBtnClicked()
     {
+        if (_resetCount <= 0) return;
         ChooseUI.SetActive(false);
         PlayAnimation("PlayerSpin");
-        //스핀 횟수 줄이기
+        _resetCount--;
         RandomSetBullet();
         StartCoroutine(SetEnableDelay(ChooseUI, true, 3.2f));
+        if(_resetCount <= 0) _spinBtn.enabled = false;
+        _spinCounter.text = $"x {_resetCount}";
     }
 
     public void EnemyTurn()
