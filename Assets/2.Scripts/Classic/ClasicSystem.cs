@@ -20,9 +20,9 @@ public class ClasicSystem : MonoBehaviour
     [Header("Setting")]
     [SerializeField] private float _introFadeTime;
 
-    public int SpinCnt { get; private set; } //랜덤 설정 이후 돌린 횟수
+    public int SpinCnt { get; set; } //랜덤 설정 이후 돌린 횟수
 
-    public int CurrentTurn { get; private set; } //0 = plr, 1 = bot
+    public int CurrentTurn { get; set; } //0 = plr, 1 = bot
 
     private int _bulletPosition; // 1 ~ 6
     private int _currentCylinder;
