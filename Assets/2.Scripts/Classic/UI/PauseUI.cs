@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PauseUI : MonoBehaviour
 {
+    [SerializeField] private GameObject _pauseButton;
+
     private Animator _animaotr;
 
     public bool CanActive { get; set; }
@@ -27,6 +29,7 @@ public class PauseUI : MonoBehaviour
     {
         if (CheckUI()) return;
         _paused = true;
+        _pauseButton.SetActive(false);
 
         _canRun = false;
         PlayAnimation("PauseUI_OPEN");
@@ -36,6 +39,7 @@ public class PauseUI : MonoBehaviour
     {
         if (CheckUI()) return;
         _paused = false;
+        _pauseButton?.SetActive(true);
 
         _canRun = false;
 
