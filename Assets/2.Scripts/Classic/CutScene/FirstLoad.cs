@@ -1,9 +1,12 @@
+using Script.UIs;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Audio;
 
 public class FirstLoad : MonoBehaviour
 {
+    [SerializeField] private EventChannelSO uiEvent;
+
     [SerializeField] private AudioMixerGroup _output;
 
     private AudioSource _audio;
@@ -74,5 +77,21 @@ public class FirstLoad : MonoBehaviour
         _audio.Play();
     }
 
-//깃허브 모바일로 편집됨. 2025-1-26-02:03
+    //07/14/2025 지금보니 코드가 개판이지만 완성까지만 한다...
+
+
+    public void GameOver_P()
+    {
+        CallGameover(false);
+    }
+    public void GameOver_E()
+    {
+        CallGameover(true);
+    }
+    private void CallGameover(bool Res)
+    {
+        GameOverEvent evt = UiEvents.GameOverEvent;
+        evt.Result = Res;
+        uiEvent.InvokeEvent(evt);
+    }
 }

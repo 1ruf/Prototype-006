@@ -20,15 +20,15 @@ public class ClassicEnemy : MonoBehaviour
         print("Enemy가 생각하는SpinCnt:" + spinCnt);
         _spined = spinCnt;
         _system.PlayAnimation("EnemyGrabGun");
-        yield return new WaitForSeconds(Random.Range(3.5f, 5f));
+        yield return new WaitForSeconds(Random.Range(4f, 5f));
         if (ThinkSpin(spinCnt))
         {
             _system.SpinCnt = 0;
             _spined = 0;
         }
-        yield return new WaitForSeconds(Random.Range(5f, 7f));
+        yield return new WaitForSeconds(Random.Range(4f, 5f));
         _system.PlayAnimation("EnemyAimmingSelf");
-        yield return new WaitForSeconds(Random.Range(2f, 5f));
+        yield return new WaitForSeconds(Random.Range(4f, 5f));
         StartCoroutine(PullTrigger());
     }
 
@@ -55,7 +55,6 @@ public class ClassicEnemy : MonoBehaviour
         if (_enemySpinCount <= 0) return false;
         if (spinCnt >= 6) return true;
         int spinPercent;
-        int percentMultiply = 1;
         spinPercent = Random.Range(spinCnt, 7);
 
         print("spinPercent:" + spinPercent);
